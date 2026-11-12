@@ -1,0 +1,158 @@
+{
+  "schema": "aiactionpi-skill-card/V01",
+  "updated": "2026-11-11",
+  "note": "唯一数据源。字段定义与三条硬口径见 字段规范.md。改这里，不要改成片。",
+  "cards": [
+    {
+      "id": "event-recap-video",
+      "name": "event-recap-video",
+      "displayName": "活动回顾视频",
+      "category": "视频 / 物料",
+      "no": "01",
+      "tagline": "把活动现场，剪成一条值得分享的视频",
+      "fit": "沙龙、工作坊、社群聚会、会议的回顾宣传视频；也可只做分镜设计或局部改片段",
+      "limit": "不用于复刻固定母版、不虚构现场成果；生成文件不等于授权公开发布",
+      "inputs": ["活动总结与逐字稿", "现场照片 / 视频", "品牌参考", "发布位置与画幅", "候选音乐（可选）"],
+      "steps": ["整理现场", "选曲核许可", "围绕音乐编排", "成片与封面"],
+      "outputs": ["完整视频", "可编辑工程", "指定比例封面", "推荐标题与检查记录"],
+      "samples": [
+        {
+          "label": "真实成品 · 第二期圆桌沙龙回顾（飞鱼）",
+          "image": "sample-recap-real.png",
+          "spec": "40 秒 · 1280×720 · H.264 · 2026-11-09 上海（真实成片视频未随本仓库发布，使用时替换为你的成片）",
+          "note": "真实活动成片的标题帧缩略图，作者飞鱼；本仓库仅含此静态缩略图，不含 mp4"
+        },
+        {
+          "label": "原仓库演示封面（虚构）",
+          "image": "sample-recap-cover.png",
+          "spec": "MAKE SOMETHING NIGHT · 16:9 · 虚构活动",
+          "note": "原仓库公开样例，图上已标虚构，仅作流程示意；不代表真实成果"
+        }
+      ],
+      "sampleStatus": "verified",
+      "status": "可用",
+      "statusNote": "已有真实活动成片（飞鱼，2026-11-09 第二期圆桌沙龙）；原仓库演示样例的技术检查通过，人工正常速度听审未完成",
+      "sampleNote": "真实成片由飞鱼提供（40 秒 / 1280×720，第二期圆桌沙龙回顾）；原仓库虚构演示样例保留作流程示意",
+      "invoke": {
+        "install": "~/.codex/skills/event-recap-video/",
+        "summary": "放入 Codex 技能目录，新会话用 $event-recap-video 调用",
+        "prompt": "使用 $event-recap-video 制作活动回顾视频。\n素材：活动总结和现场照片。\n音乐：请搜索适合活动的BGM，核验许可并推荐候选。\n目标：突出现场交流，并讲清三个核心内容。\n画幅：横屏；封面按实际上传位置分别适配。\n先检查素材和音乐，再设计分镜并完成制作。"
+      },
+      "deps": "能读写文件并导出视频的 Agent 环境；FFmpeg / ffprobe；动效可路由 HyperFrames 或 huashu-motion",
+      "author": "飞鱼",
+      "version": "未标注",
+      "source": "https://github.com/Dvsx/event-recap-video",
+      "_sources": {
+        "tagline": "README 首句定位",
+        "fit": "README 副标题「面向沙龙、工作坊、社群聚会和会议」＋「开始使用」末段",
+        "limit": "SKILL.md「输出边界」＋ README「环境与边界 / 公开发布」",
+        "inputs": "README「你提供什么，得到什么」输入段",
+        "steps": "README「制作流程」4 步",
+        "outputs": "README「交付」段",
+        "samples": "真实成片由飞鱼 2026-11-11 提供（40 秒 / 1280×720，缩略图取自 6 秒标题帧）；演示封面 examples/make-something-night/cover.png",
+        "status": "真实成片存在且被采信为成品示例；原仓库 VALIDATION.md 口径照录",
+        "invoke": "README「开始使用」原文安装路径与调用提示词",
+        "deps": "README「环境与边界」＋ SKILL.md「实现与修改」"
+      }
+    },
+    {
+      "id": "aiactionpi-courseware",
+      "name": "aiactionpi-courseware",
+      "displayName": "AI行动π 课件生成",
+      "category": "内容 / 交付",
+      "no": "02",
+      "tagline": "按品牌规范生成线下沙龙课件全套交付物",
+      "fit": "AI行动π 线下沙龙、主题分享、训练营课件；要同时交付 PPTX、PDF 与逐页讲者手册",
+      "limit": "不适用于 HTML 单页课件，改用 courseware-style",
+      "inputs": ["主题与逐页内容", "品牌工具包素材", "案例原图（可选）"],
+      "steps": ["建项目目录", "复制模板素材", "只改内容文件", "一键生成", "逐版式验收"],
+      "outputs": ["可编辑 PPTX", "投影用 PDF", "逐页讲者手册", "现场打印材料"],
+      "samples": [
+        {
+          "label": "示例课件 · 第 5 页",
+          "image": "sample-courseware-slide.png",
+          "spec": "12 页 · 1280×720 · cards 版式",
+          "note": "技能自带示例，标题为占位文字"
+        },
+        {
+          "label": "示例讲者手册",
+          "image": "sample-courseware-manual.png",
+          "spec": "A4 单页 · 12 页逐页讲法 / 26 分钟",
+          "note": "技能自带示例，占位内容"
+        }
+      ],
+      "sampleStatus": "verified",
+      "status": "可用",
+      "statusNote": "技能自带 examples 两份实物；内容为占位版式，不代表真实活动成果",
+      "sampleNote": "两份 PDF 确由技能产出，但页面文字是版式占位（如「标题一」「第一个模块」），不是真实沙龙内容",
+      "invoke": {
+        "install": "~/.workbuddy/skills/aiactionpi-courseware/（本机已装）",
+        "summary": "~/Documents/课件输出/<主题名>/ 建目录，只改 content.py 后跑 build_all.sh",
+        "prompt": "用 aiactionpi-courseware 做一份 AI行动π 线下沙龙课件。\n主题：［填主题］\n需要同时交付：可编辑 PPTX、投影用 PDF、逐页讲者手册。\n按品牌模板来，1280×720 横版。"
+      },
+      "deps": "Python 3.13 隔离 venv（python-pptx / pymupdf / pillow）；LibreOffice 转 PDF；Mac 上 PDF 用 Hiragino Sans GB",
+      "author": "未标注",
+      "version": "1.0.0",
+      "source": "~/.workbuddy/skills/aiactionpi-courseware/",
+      "_sources": {
+        "tagline": "SKILL.md frontmatter description 前半句",
+        "fit": "description「当用户要做…时使用」＋ SKILL.md「何时用」",
+        "limit": "description 末句「不适用于 HTML 单页课件（那是 courseware-style 的职责）」",
+        "inputs": "SKILL.md「快速开始」第 2、3 步（素材与 content.py）",
+        "steps": "SKILL.md「快速开始」5 个小标题",
+        "outputs": "description 括号内交付清单＋ SKILL.md「一键生成」产出",
+        "samples": "examples/示例课件_12页.pdf 第 5 页、示例讲者手册.pdf 第 1 页（实测均为占位版式）",
+        "status": "examples 实物存在；本轮只读了 SKILL.md 与两份 PDF，未重跑 build_all.sh",
+        "invoke": "示例提示词据 SKILL.md「何时用」触发语与「快速开始」步骤整理，非原文逐字",
+        "deps": "SKILL.md「环境依赖（一次性）」＋「为什么要出两份 PPTX」"
+      }
+    },
+    {
+      "id": "media-transcriber",
+      "name": "media-transcriber",
+      "displayName": "音视频转录与长文整理",
+      "category": "内容 / 整理",
+      "no": "03",
+      "tagline": "把音视频与逐字稿整理成保留细节的中文长稿",
+      "fit": "播客、视频、会议录音、字幕或逐字稿；也可只要摘要、时间戳稿或原始逐字稿",
+      "limit": "简介与 AI 摘要不能冒充逐字稿；未覆盖片段不能用推测补全；不自动扩成批量任务",
+      "inputs": ["音视频 / 本地文件", "字幕 / 转录 JSON", "会议逐字稿", "指定的输出类型"],
+      "steps": ["确认输入建目录", "取得完整原文", "检查转录质量", "按要求生成文稿", "核对并交付"],
+      "outputs": ["完整中文整理稿", "简短摘要（可选）", "带时间戳稿件", "原始逐字稿"],
+      "samples": [
+        {
+          "label": "输出选择（示意）",
+          "image": null,
+          "text": "整理稿 / 加一段摘要 / 带时间戳 / 原始逐字稿",
+          "spec": "取自 SKILL.md「输出选择」表",
+          "note": "示意 · 非实际产出"
+        }
+      ],
+      "sampleStatus": "placeholder",
+      "status": "示例待补",
+      "statusNote": "README 记录 1.1.0 已通过结构、显示信息、相对链接与环境检查脚本六项检查；本轮未重新执行音频转录，也没有可展示的成品文稿",
+      "sampleNote": "无实物成品。按 字段规范.md 降级为示意文字块，不截图伪造成品",
+      "invoke": {
+        "install": "~/.agents/skills/media-transcriber/（Codex）或对应助手 skills 目录",
+        "summary": "装进助手技能目录后新会话调用「音视频转录与长文整理」",
+        "prompt": "使用音视频转录与长文整理，把这个播客整理成完整中文长稿，保留案例、数字和推理过程：［单集链接］"
+      },
+      "deps": "宿主文件与终端工具；Python 3.9+；yt-dlp、ffmpeg/ffprobe、faster-whisper 或 mlx-whisper 按任务按需；飞书为可选分支",
+      "author": "未标注",
+      "version": "1.1.0",
+      "source": "~/.workbuddy/skills/media-transcriber/",
+      "_sources": {
+        "tagline": "SKILL.md frontmatter description",
+        "fit": "SKILL.md「何时使用」＋ README「直接开始」的四种用法",
+        "limit": "SKILL.md「确认输入」「取得完整原文」「检查转录质量」三节的禁止项",
+        "inputs": "SKILL.md「确认输入」＋「取得完整原文」输入表",
+        "steps": "SKILL.md「默认执行流程」5 个小标题",
+        "outputs": "SKILL.md「输出选择」表",
+        "samples": "SKILL.md「输出选择」表；目录内无 examples/ 实物",
+        "status": "README「验证范围」1.1.0 段＋本轮只读核查",
+        "invoke": "README「直接开始 / 完整整理稿」原文提示词＋「手动安装」路径",
+        "deps": "SKILL.md「所需能力」＋ README「按需准备工具」表"
+      }
+    }
+  ]
+}
